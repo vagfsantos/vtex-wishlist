@@ -1,5 +1,5 @@
 {
-  "name": "wishlist",
+  "name": "vtex custom wishlist",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,18 +8,17 @@
     "dev": "gulp && gulp watch",
     "doc": "gulp doc"
   },
-  "author": "Vagner F. Santos",
-  "license": "ISC",
+  "author": "Vagner Ferreira Santos",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
     "gulp-cli": "^1.2.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-documentation": "^3.1.0",
     "gulp-notify": "^3.0.0",
     "gulp-plumber": "^1.1.0",
     "gulp-uglify": "^2.1.0"
   },
-  "dependencies": {
-    "esdoc": "^0.5.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-documentation": "^3.1.0"
-  }
+  "dependencies": {}
 }
