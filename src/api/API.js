@@ -9,7 +9,7 @@
     var Data = APP._Util.Data;
     var Config = APP._Util.Config;
     
-    
+    /** This is a description of the foo function. */
     APP.add = function(id){
         Data.add.apply(Data, [id]);
         return this;

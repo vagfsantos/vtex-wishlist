@@ -52,7 +52,9 @@ gulp.task('dist', ['doc', 'cleanDist'], function() {
 gulp.task('doc', function () {
     return gulp.src('./src/**/*.js')
         .pipe(plumber())
-        .pipe(gulpDocumentation('md'))
+        .pipe(gulpDocumentation('md', {
+            filename: 'README.md'
+        }))
         .pipe(gulp.dest('./'));
 });
 
