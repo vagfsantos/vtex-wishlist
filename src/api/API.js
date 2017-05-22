@@ -1,8 +1,8 @@
 (function(APP, GLOBAL){
-    // CHECK IF WISHLIST GLOBAL IS SET
+    // CHECK IF vtexCustomWishlist GLOBAL IS SET
     if( !APP ){
-        GLOBAL.WISHLIST = {};
-        APP = GLOBAL.WISHLIST;
+        GLOBAL.vtexCustomWishlist = {};
+        APP = GLOBAL.vtexCustomWishlist;
     }
     
     var Core = APP._Util.Core;
@@ -40,4 +40,4 @@
         return Config.get.apply(Config, []);
     }
     
-})( window.WISHLIST, window);
+})( window.vtexCustomWishlist, window);

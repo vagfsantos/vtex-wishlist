@@ -1,15 +1,15 @@
 (function(APP, GLOBAL){
-    // CHECK IF WISHLIST GLOBAL IS SET
+    // CHECK IF vtexCustomWishlist GLOBAL IS SET
     if( !APP ){
-        GLOBAL.WISHLIST = {};
-        APP = GLOBAL.WISHLIST;
+        GLOBAL.vtexCustomWishlist = {};
+        APP = GLOBAL.vtexCustomWishlist;
         
         if( !APP._Util ){
             APP._Util = {};
         }
     }
     
-    // GLOBAL WISHLIST CONFIGURATION
+    // GLOBAL vtexCustomWishlist CONFIGURATION
     var _defaultConfig = {
         headers: {
             'Accept': 'application/vnd.vtex.ds.v10+json',
@@ -55,4 +55,4 @@
     
     APP._Util.Config = Config;
     
-})( window.WISHLIST, window);
+})( window.vtexCustomWishlist, window);

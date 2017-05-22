@@ -1,8 +1,8 @@
 (function(APP, GLOBAL){
-    // CHECK IF WISHLIST GLOBAL IS SET
+    // CHECK IF vtexCustomWishlist GLOBAL IS SET
     if( !APP ){
-        GLOBAL.WISHLIST = {};
-        APP = GLOBAL.WISHLIST;
+        GLOBAL.vtexCustomWishlist = {};
+        APP = GLOBAL.vtexCustomWishlist;
         
         if( !APP._Util ){
             APP._Util = {};
@@ -52,4 +52,4 @@
     
     APP._Util.Login = Login;
     
-})( window.WISHLIST, window);
+})( window.vtexCustomWishlist, window);

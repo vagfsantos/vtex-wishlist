@@ -1,9 +1,9 @@
 (function(APP, GLOBAL){
-    // CHECK IF WISHLIST GLOBAL IS SET
+    // CHECK IF vtexCustomWishlist GLOBAL IS SET
     
     if( !APP ){
-        GLOBAL.WISHLIST = {};
-        APP = GLOBAL.WISHLIST;
+        GLOBAL.vtexCustomWishlist = {};
+        APP = GLOBAL.vtexCustomWishlist;
     }
     
     var _userIsLogged = APP._Util.Login.userIsLogged;
@@ -18,4 +18,4 @@
     
     APP._Util.Core = Core;
     
-})( window.WISHLIST, window );
+})( window.vtexCustomWishlist, window );
