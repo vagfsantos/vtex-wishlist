@@ -5,6 +5,7 @@ var uglify = require('gulp-uglify');
 var notify = require('gulp-notify');
 var plumber = require('gulp-plumber');
 var gulpDocumentation = require('gulp-documentation');
+var sourcemaps = require('gulp-sourcemaps');
 
 // DEFAULT TASK
 // use it in develoment
@@ -16,8 +17,9 @@ gulp.task('default', function() {
         'src/tests/**/*.js'
     ])
     .pipe(plumber())
-    .pipe(uglify())
+    .pipe(sourcemaps.init())
     .pipe(concat('vtex-custom-wishlist.js'))
+    .pipe(sourcemaps.write())
     .pipe(notify({
         title: "JS READY",
         message: "Generate file: <%= file.relative %>!"
