@@ -1,5 +1,5 @@
 (function(APP, GLOBAL){
-    // CHECK IF vtexCustomWishlist GLOBAL IS SET
+    // cheking if the namespace is already set
     if( !APP ){
         GLOBAL.vtexCustomWishlist = {};
         APP = GLOBAL.vtexCustomWishlist;
@@ -9,7 +9,9 @@
         }
     }
     
-    // GLOBAL vtexCustomWishlist CONFIGURATION
+    /*
+    Default Configuration Variable
+    */
     var _defaultConfig = {
         headers: {
             'Accept': 'application/vnd.vtex.ds.v10+json',
@@ -29,8 +31,12 @@
         }
     }
     
+    /*
+    Config Controller API
+    Util object interface, resposable for manipulating the defaults settings
+    */
     var Config = {
-        // SET AND SUBSCRIBE THE DEFAULT CONFIGURATION
+        // set and subscribe the default configuration
         set: function(obj){
             for( var i in obj ){
                 if( obj.hasOwnProperty(i) ){
@@ -39,13 +45,14 @@
             }
         },
         
-        // RETURNS CONFIGURATION
+        // returns the current configuration
         get: function(){
             return _defaultConfig;
         },
         
+        // handles activities, when the user is not logged in
         completeRegistration: function(){
-            if( typeof _defaultConfig.onIncompleteRegistration === 'function' ){
+            if( _defaultConfig.onIncompleteRegistration.call ){
                 _defaultConfig.onIncompleteRegistration();
             }else{
                 console.log('o parâmetro "onIncompleteRegistration" não foi passado corretamente, certifique-se de ter passado uma função');
@@ -53,6 +60,7 @@
         }
     }
     
+    // apply the object into the global namespace
     APP._Util.Config = Config;
     
 })( window.vtexCustomWishlist, window);

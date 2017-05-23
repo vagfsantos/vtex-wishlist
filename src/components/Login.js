@@ -1,5 +1,5 @@
 (function(APP, GLOBAL){
-    // CHECK IF vtexCustomWishlist GLOBAL IS SET
+    // cheking if the namespace is already set
     if( !APP ){
         GLOBAL.vtexCustomWishlist = {};
         APP = GLOBAL.vtexCustomWishlist;
@@ -10,7 +10,9 @@
     }
     
     var Login = {
-        // RETURNS LOGGED USER
+        // it checks if the user is logged in and handle both cases
+        // case they are logged in, a callback is called receiving the user data as argument
+        // otherwise the 'completeRegistration' function is called to handle it
         userIsLogged: function(callback){
             $.ajax('/no-cache/profileSystem/getProfile')
             .fail(function(error){
@@ -19,9 +21,10 @@
             })
             .success(function(user){
                 if( user ){
-                    // CALL VTEX LOGIN POP UP
+                    // it calls the vtex login pop up
                     if( !user.IsUserDefined ){
                         try{
+                            // vtex method
                             vtexid.start({
                                 returnUrl: '',
                                 userEmail: '',
@@ -36,8 +39,8 @@
                     else if( user.IsUserDefined &&  !data.FirstName ){
                         APP._Util.Config.completeRegistration();
                     }else{
-                        if( typeof callback === 'function' ){
-                            callback.call(user);
+                        if( callback.call ){
+                            callback(user);
                         }
                     }
                 }else{
@@ -50,6 +53,7 @@
         }
     }
     
+    // apply the object into the global namespace
     APP._Util.Login = Login;
     
 })( window.vtexCustomWishlist, window);

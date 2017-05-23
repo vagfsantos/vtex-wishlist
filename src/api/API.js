@@ -1,15 +1,21 @@
 (function(APP, GLOBAL){
-    // CHECK IF vtexCustomWishlist GLOBAL IS SET
+    // cheking if the namespace is already set
     if( !APP ){
         GLOBAL.vtexCustomWishlist = {};
         APP = GLOBAL.vtexCustomWishlist;
     }
     
+    // Namespace for Utilities classes
     var Core = APP._Util.Core;
     var Data = APP._Util.Data;
     var Config = APP._Util.Config;
     
-    /** This is a description of the foo function. */
+    /*
+    
+    Client API
+    Public Interface
+    
+    */
     APP.add = function(id){
         Data.add.apply(Data, [id]);
         return this;

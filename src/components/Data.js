@@ -1,5 +1,5 @@
 (function(APP, GLOBAL){
-    // CHECK IF vtexCustomWishlist GLOBAL IS SET
+    // cheking if the namespace is already set
     if( !APP ){
         GLOBAL.vtexCustomWishlist = {};
         APP = GLOBAL.vtexCustomWishlist;
@@ -9,11 +9,12 @@
         }
     }
     
-    // PRIVATE VALUES FOR PRODUCT IDS CACHED
+    // private variable for caching the product id values
     var _storedValues = [];
     
     var Data = {
-        // ADD A PRODUCT ID TO STORED ARRAY
+        // it adds a product id in the stored array
+        // triggers the 'added' event in success case
         add: function(id){
             if( _storedValues.indexOf(id) === -1 ){
                 _storedValues.push(id);
@@ -24,7 +25,7 @@
             }
         },
         
-        // DELETE A PRODUCT ID TO STORED ARRAY
+        // it deletes a product id in the stored array
         delete: function(id){
             var index = _storedValues.indexOf(id);
             if( index !== -1 ){
@@ -36,15 +37,21 @@
             console.log('o id: ' +id+ ' não foi encontrado na store');
         },
         
-        // RETURN DATA STORAGED
+        // it returns the current ids
         getData: function(){
             return _storedValues;
         },
         
+        // it cleans the entire id
         cleanData: function(){
             _storedValues = [];
         }
     };
+    
+    /*
+    Event Object
+    It Handles some data state events
+    */
     
     var Event = {
         types: {
@@ -53,6 +60,8 @@
                 delay: 500
             },
             
+            // it is triggered, when a product have been just added into the store
+            // it gets a delay before sending for the actual saving
             added: function(){
                 var _this = this;
                 var MasterData = APP._Util.MasterData;
@@ -70,6 +79,7 @@
             }
         },
         
+        // the interface for manipulating the events
         on: function(eventName){
             if( this.types[eventName] ){
                 this.types[eventName]();
@@ -77,6 +87,7 @@
         }
     }
     
+    // apply the object into the global namespace
     APP._Util.Data = Data;
     
 })( window.vtexCustomWishlist, window);

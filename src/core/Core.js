@@ -1,6 +1,5 @@
 (function(APP, GLOBAL){
-    // CHECK IF vtexCustomWishlist GLOBAL IS SET
-    
+    // cheking if the namespace is already set
     if( !APP ){
         GLOBAL.vtexCustomWishlist = {};
         APP = GLOBAL.vtexCustomWishlist;
