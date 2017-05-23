@@ -1,19 +1,27 @@
 function it(description, callback){
     if( typeof callback === "function" ){
         if( callback() ){
-            console.debug('test succeed: '+description);
+            console.log('%c Test Succeed: '+description, 'background: #09ab69; color: #fff');
         }else{
-            console.assert(false, 'Fail: '+ description);
+            console.log('%c Test Fail: '+ description, 'background: #f00; color: #fff');
         }
     }
 }
 
-it('should add an id to storage', function(){
-    vtexCustomWishlist.add('15');
-    var result = vtexCustomWishlist.getIds();
-    if( result.indexOf('15') >= 0 ){
-        return true;
+vtexCustomWishlist.config({
+    onIncompleteRegistration: function(){
+        console.log('conta não logada')
     }
+});
+
+
+vtexCustomWishlist.add('15').success(function(){
+    it('should add an id to storage', function(){
+        var result = vtexCustomWishlist.getIds();
+        if( result.indexOf('15') >= 0 ){
+            return true;
+        }
+    });
 });
 
 it('should return all ids into the storage', function(){
@@ -40,7 +48,8 @@ it('should clean all storage', function(){
 });
 
 it('should not allow 2 equal ids in the store', function(){
-    vtexCustomWishlist.add('15').add('15');
+    vtexCustomWishlist.add('15');
+    vtexCustomWishlist.add('15');
     var result = vtexCustomWishlist.getIds();
     var count = 0;
     
@@ -66,7 +75,6 @@ it('should config properly the app', function(){
         return true;
     }
 });
-
 
 vtexCustomWishlist.clean();
 for(var i = 0; i < 5; i++){

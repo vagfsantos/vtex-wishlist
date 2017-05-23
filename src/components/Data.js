@@ -12,6 +12,22 @@
     // private variable for caching the product id values
     var _storedValues = [];
     
+    //PromisseHandler
+    var PromisseHandler = {
+        success: function(callback){
+            if( callback ){
+                this.success = callback;
+            }
+            return this;
+        },
+        fail: function(callback){
+            if( callback ){
+                this.fail = callback;
+            }
+            return this;
+        }
+    };
+    
     var Data = {
         // it adds a product id in the stored array
         // triggers the 'added' event in success case
@@ -19,10 +35,12 @@
             if( _storedValues.indexOf(id) === -1 ){
                 _storedValues.push(id);
                 Event.on('added');
-                console.log('o id: ' +id+ ' foi adicionado a store');
+                console.log('### wishlist: o id: ' +id+ ' foi adicionado a store');
             }else{
-                console.log('o id: ' +id+ ' já estava adicionado na store');
+                console.log('### wishlist: o id: ' +id+ ' já estava adicionado na store');
             }
+            
+            return PromisseHandler;
         },
         
         // it deletes a product id in the stored array
@@ -30,11 +48,11 @@
             var index = _storedValues.indexOf(id);
             if( index !== -1 ){
                 _storedValues.splice(index, 1);
-                console.log('o id: '+id+ ' foi deletado da store');
+                console.log('### wishlist: o id: '+id+ ' foi deletado da store');
                 return;
             }
             
-            console.log('o id: ' +id+ ' não foi encontrado na store');
+            console.log('### wishlist: o id: ' +id+ ' não foi encontrado na store');
         },
         
         // it returns the current ids
@@ -71,6 +89,7 @@
                     var diff = current - this.lastInteration;
                     if( diff > _this.config.delay - 100 ){
                         MasterData.saveProducts();
+                        PromisseHandler.success();
                         console.log(_storedValues);
                     }
                 }, _this.config.delay);

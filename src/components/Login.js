@@ -17,7 +17,7 @@
             $.ajax('/no-cache/profileSystem/getProfile')
             .fail(function(error){
                 console.log(error);
-                console.log('Não foi possível acessar a API de Profile da vtex');
+                console.log('### wishlist: Não foi possível acessar a API de Profile da vtex');
             })
             .success(function(user){
                 if( user ){
@@ -33,7 +33,7 @@
                             });
                         }catch(e){
                             console.log(e);
-                            console.log('Erro ao tentar abrir o PopUp de login, certifique-se de que o controle <vtex.cmc:welcomeMessage/> esteja na página');
+                            console.log('### wishlist: Erro ao tentar abrir o PopUp de login, certifique-se de que o controle <vtex.cmc:welcomeMessage/> esteja na página');
                         }
                     }
                     else if( user.IsUserDefined &&  !user.FirstName ){
@@ -44,11 +44,11 @@
                         }
                     }
                 }else{
-                    console.log('Resposta da API getProfile não definida');
+                    console.log('### wishlist: Resposta da API getProfile não definida');
                 }
             })
             .done(function(){
-                console.log('Consulta na API de profile finalizada');
+                console.log('### wishlist: Consulta na API de profile finalizada');
             });
         }
     }

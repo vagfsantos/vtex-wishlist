@@ -17,8 +17,7 @@
     
     */
     APP.add = function(id){
-        Data.add.apply(Data, [id]);
-        return this;
+        return Data.add.apply(Data, [id]);
     }
     
     APP.delete = function(id){
