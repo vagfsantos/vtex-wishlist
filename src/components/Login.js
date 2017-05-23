@@ -36,7 +36,7 @@
                             console.log('Erro ao tentar abrir o PopUp de login, certifique-se de que o controle <vtex.cmc:welcomeMessage/> esteja na página');
                         }
                     }
-                    else if( user.IsUserDefined &&  !data.FirstName ){
+                    else if( user.IsUserDefined &&  !user.FirstName ){
                         APP._Util.Config.completeRegistration();
                     }else{
                         if( callback.call ){

@@ -52,11 +52,14 @@
         
         // handles activities, when the user is not logged in
         completeRegistration: function(){
-            if( _defaultConfig.onIncompleteRegistration.call ){
-                _defaultConfig.onIncompleteRegistration();
-            }else{
-                console.log('o parâmetro "onIncompleteRegistration" não foi passado corretamente, certifique-se de ter passado uma função');
+            if( _defaultConfig.onIncompleteRegistration ){
+                if( _defaultConfig.onIncompleteRegistration.call() ){
+                    _defaultConfig.onIncompleteRegistration();
+                    return;
+                }
             }
+            
+            throw new Error('The parameter "onIncompleteRegistration" was not set correctly, please pass a function as parameter');
         }
     }
     
