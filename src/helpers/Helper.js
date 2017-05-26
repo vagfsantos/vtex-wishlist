@@ -61,8 +61,8 @@
 
             // the interface for manipulating the events
             on: function(eventName, handler){
-                if( this.types[eventName] ){
-                    this.types[eventName].call(this._types, handler);
+                if( this._types[eventName] ){
+                    this._types[eventName].call(this._types, handler);
                 }
             }
         }

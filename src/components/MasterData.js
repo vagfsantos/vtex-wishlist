@@ -11,6 +11,9 @@
 
     var MasterData = {
         getUserId: function(){
+            var wishlistStoreName = APP._Util.Config.get().storeName;
+            var userEmail = APP._Util.Config.get().userEmail;
+            
             APP._Util.Login.userIsLogged(function(data){
                 console.log('-----------------');
                 
