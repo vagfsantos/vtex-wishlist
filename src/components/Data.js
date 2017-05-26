@@ -12,39 +12,31 @@
     // private variable for caching the product id values
     var _storedValues = [];
     
-    //PromisseHandler
-    var PromisseHandler = {
-        success: function(callback){
-            if( callback ){
-                this.success = callback;
-            }
-            return this;
-        },
-        fail: function(callback){
-            if( callback ){
-                this.fail = callback;
-            }
-            return this;
-        }
-    };
+    //createPromisse
+    var createPromisse = APP._Util.Helper.createPromisse;
+    var event = APP._Util.Helper.eventTrigger;
     
     var Data = {
         // it adds a product id in the stored array
         // triggers the 'added' event in success case
         add: function(id){
+            var promise = createPromisse();
+            
             if( _storedValues.indexOf(id) === -1 ){
                 _storedValues.push(id);
-                Event.on('added');
+                event.on('added', );
                 console.log('### wishlist: o id: ' +id+ ' foi adicionado a store');
             }else{
                 console.log('### wishlist: o id: ' +id+ ' já estava adicionado na store');
             }
             
-            return PromisseHandler;
+            return promise;
         },
         
         // it deletes a product id in the stored array
         delete: function(id){
+            var promise = createPromisse();
+            
             var index = _storedValues.indexOf(id);
             if( index !== -1 ){
                 _storedValues.splice(index, 1);
@@ -53,6 +45,7 @@
             }
             
             console.log('### wishlist: o id: ' +id+ ' não foi encontrado na store');
+            return promise;
         },
         
         // it returns the current ids
@@ -66,45 +59,7 @@
         }
     };
     
-    /*
-    Event Object
-    It Handles some data state events
-    */
     
-    var Event = {
-        types: {
-            config: {
-                lastInteration: 0,
-                delay: 500
-            },
-            
-            // it is triggered, when a product have been just added into the store
-            // it gets a delay before sending for the actual saving
-            added: function(){
-                var _this = this;
-                var MasterData = APP._Util.MasterData;
-                
-                window.setTimeout(function(){
-                    var current = new Date().getTime();
-                    var diff = current - this.lastInteration;
-                    if( diff > _this.config.delay - 100 ){
-                        MasterData.saveProducts();
-                        PromisseHandler.success();
-                        console.log(_storedValues);
-                    }
-                }, _this.config.delay);
-                
-                lastInteration = new Date().getTime();
-            }
-        },
-        
-        // the interface for manipulating the events
-        on: function(eventName){
-            if( this.types[eventName] ){
-                this.types[eventName]();
-            }
-        }
-    }
     
     // apply the object into the global namespace
     APP._Util.Data = Data;
