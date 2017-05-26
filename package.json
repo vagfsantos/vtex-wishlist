@@ -1,11 +1,11 @@
 {
-  "name": "vtex custom wishlist",
+  "name": "vtex-custom-wishlist",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp && gulp watch",
+    "dev": "gulp && gulp watch --color",
     "doc": "gulp doc"
   },
   "author": "Vagner Ferreira Santos",

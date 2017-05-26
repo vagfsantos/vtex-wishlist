@@ -11,6 +11,7 @@ var sourcemaps = require('gulp-sourcemaps');
 // use it in develoment
 gulp.task('default', function() {
     return gulp.src([
+        'src/helpers/**/*.js',
         'src/components/**/*.js',
         'src/core/**/*.js',
         'src/api/**/*.js',
